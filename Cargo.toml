@@ -1,0 +1,11 @@
+[package]
+name = "lfw-solver"
+version = "0.1.0"
+authors = ["Thibault ML <thibault.ml@gmail.com>"]
+
+[dependencies]
+getopts = "~0.2"
+serde = "*"
+serde_json = "*"
+serde_derive = "*"
+bincode = "*"
