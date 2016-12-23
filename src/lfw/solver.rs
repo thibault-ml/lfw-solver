@@ -31,7 +31,7 @@ impl Solver {
 
     /**
      * Possible optimisations:
-     * - Return if  the number of moves left is less than the number of known locations we have yet to visit
+     * - Return if the number of moves left is less than the number of known locations we have yet to visit
      * When solving multiple nights:
      * - If we have a pre-calculated dijkstra distance, for night 2 onwards, we have a list of
      *   potential hideouts, exit early if there's no way to get to any of those in the number
@@ -58,6 +58,7 @@ impl Solver {
         current_turn: &u32)
     {
         if current_turn > night.jack_nb_moves() {
+            // Check that the path we're testing includes all known locations for Jack
             if night.jack_known_locations().iter().all(|known_loc| current_path.contains(known_loc)) {
                 possible_paths.push(current_path.clone());
             }
@@ -65,7 +66,6 @@ impl Solver {
         }
 
         // unwrap() because current_path shouldn't be empty, so we're happy to panic if that's the case
-        // clone() so that `last_pos` doesn't require `current_path` to be immutably borrowed
         let last_pos = *(current_path.last().unwrap());
 
         let connections = match night.jack_move_type_for_turn(current_turn) {
