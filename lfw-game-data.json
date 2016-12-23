@@ -1,6 +1,6 @@
 {
     "murder_location": 9,
-    "jack_known_locations": [28],
+    "jack_known_locations": [28, 3],
     "jack_nb_moves": 9,
     "jack_alleyways": [7, 8],
     "failed_clues_per_turn": [
