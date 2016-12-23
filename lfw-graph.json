@@ -537,246 +537,246 @@
 	},
 	"135": {
 		"regular_moves": [112, 113, 114, 136, 137, 138, 148, 162],
-		"alleyway_moves": []
+		"alleyway_moves": [112, 113, 148]
 	},
 	"136": {
 		"regular_moves": [113, 114, 135, 137, 138, 139, 148, 149, 163, 164, 174],
-		"alleyway_moves": []
+		"alleyway_moves": [138, 148, 149]
 	},
 	"137": {
 		"regular_moves": [113, 114, 115, 135, 136, 138, 148],
-		"alleyway_moves": []
+		"alleyway_moves": [114, 115, 116, 138, 139]
 	},
 	"138": {
 		"regular_moves": [113, 114, 135, 136, 137, 139, 148, 149, 163, 164, 174],
-		"alleyway_moves": []
+		"alleyway_moves": [136, 115, 116, 137, 139]
 	},
 	"139": {
 		"regular_moves": [116, 117, 118, 136, 138, 149, 150, 151, 163, 164, 174],
-		"alleyway_moves": []
+		"alleyway_moves": [138, 137, 115, 116, 150, 176, 175, 164]
 	},
 	"140": {
 		"regular_moves": [100, 122, 123, 124, 125, 141, 152, 153, 154, 155, 168, 170, 180],
-		"alleyway_moves": []
+		"alleyway_moves": [153, 121, 123, 154, 170]
 	},
 	"141": {
 		"regular_moves": [100, 122, 123, 124, 125, 140, 155, 170],
-		"alleyway_moves": []
+		"alleyway_moves": [155, 170]
 	},
 	"142": {
 		"regular_moves": [101, 102, 125, 126, 127, 143, 156, 158],
-		"alleyway_moves": []
+		"alleyway_moves": [143, 156, 157, 158]
 	},
 	"143": {
 		"regular_moves": [101, 102, 125, 126, 127, 128, 142, 144, 156, 158, 159],
-		"alleyway_moves": []
+		"alleyway_moves": [127, 128, 142, 158, 159]
 	},
 	"144": {
 		"regular_moves": [128, 129, 143, 145, 159, 160, 173],
-		"alleyway_moves": []
+		"alleyway_moves": [128, 129, 103, 87, 70, 159]
 	},
 	"145": {
 		"regular_moves": [104, 129, 130, 131, 144, 146, 159, 160, 161, 173],
-		"alleyway_moves": []
+		"alleyway_moves": [129, 104, 130, 160, 161]
 	},
 	"146": {
 		"regular_moves": [130, 131, 133, 145, 147, 161],
-		"alleyway_moves": []
+		"alleyway_moves": [131, 133]
 	},
 	"147": {
 		"regular_moves": [111, 133, 134, 146],
-		"alleyway_moves": []
+		"alleyway_moves": [133, 134]
 	},
 	"148": {
 		"regular_moves": [112, 113, 114, 135, 136, 137, 138, 149, 162, 163],
-		"alleyway_moves": []
+		"alleyway_moves": [135, 162, 136, 149]
 	},
 	"149": {
 		"regular_moves": [136, 138, 139, 148, 162, 163, 164, 174],
-		"alleyway_moves": []
+		"alleyway_moves": [136, 148, 163]
 	},
 	"150": {
 		"regular_moves": [116, 117, 118, 139, 151, 166, 176],
-		"alleyway_moves": []
+		"alleyway_moves": [139, 164, 175, 176, 151]
 	},
 	"151": {
 		"regular_moves": [116, 117, 118, 119, 121, 139, 150, 153, 166, 176],
-		"alleyway_moves": []
+		"alleyway_moves": [150, 118, 119, 166, 152, 153]
 	},
 	"152": {
 		"regular_moves": [140, 153, 154, 165, 166, 167, 168, 177, 178, 180],
-		"alleyway_moves": []
+		"alleyway_moves": [151, 153, 166, 167, 179, 180, 191]
 	},
 	"153": {
 		"regular_moves": [119, 121, 140, 151, 152, 154, 168, 180],
-		"alleyway_moves": []
+		"alleyway_moves": [151, 152, 166, 121, 123, 140]
 	},
 	"154": {
 		"regular_moves": [140, 152, 153, 168, 169, 170, 180],
-		"alleyway_moves": []
+		"alleyway_moves": [168, 140, 170]
 	},
 	"155": {
 		"regular_moves": [100, 122, 123, 124, 125, 140, 141, 170, 181, 182],
-		"alleyway_moves": []
+		"alleyway_moves": [141, 170, 125, 156, 182, 183]
 	},
 	"156": {
 		"regular_moves": [101, 102, 125, 126, 127, 142, 143, 157, 171, 183],
-		"alleyway_moves": []
+		"alleyway_moves": [125, 155, 182, 183, 142, 157, 158]
 	},
 	"157": {
 		"regular_moves": [156, 158, 159, 171, 172, 183, 185],
-		"alleyway_moves": []
+		"alleyway_moves": [142, 156, 158, 171]
 	},
 	"158": {
 		"regular_moves": [142, 143, 157, 159, 171, 172, 183, 185],
-		"alleyway_moves": []
+		"alleyway_moves": [141, 156, 157, 143, 159]
 	},
 	"159": {
 		"regular_moves": [128, 129, 143, 144, 145, 157, 158, 160, 171, 172, 173, 183, 185, 187, 195],
-		"alleyway_moves": []
+		"alleyway_moves": [144, 172, 173]
 	},
 	"160": {
 		"regular_moves": [129, 144, 145, 159, 161, 173],
-		"alleyway_moves": []
+		"alleyway_moves": [145, 161]
 	},
 	"161": {
 		"regular_moves": [130, 131, 145, 146, 160],
-		"alleyway_moves": []
+		"alleyway_moves": [145, 160]
 	},
 	"162": {
 		"regular_moves": [112, 135, 148, 149, 163],
-		"alleyway_moves": []
+		"alleyway_moves": [148]
 	},
 	"163": {
 		"regular_moves": [136, 138, 139, 148, 149, 162, 164, 174],
-		"alleyway_moves": []
+		"alleyway_moves": [149]
 	},
 	"164": {
 		"regular_moves": [136, 138, 139, 149, 163, 174, 175, 188],
-		"alleyway_moves": []
+		"alleyway_moves": [174, 139, 150, 175, 176]
 	},
 	"165": {
 		"regular_moves": [152, 166, 167, 177, 178, 189],
-		"alleyway_moves": []
+		"alleyway_moves": [166, 176, 177, 189, 190]
 	},
 	"166": {
 		"regular_moves": [150, 151, 152, 165, 167, 176, 177, 178],
-		"alleyway_moves": []
+		"alleyway_moves": [151, 152, 153, 165, 176, 189, 190]
 	},
 	"167": {
 		"regular_moves": [152, 165, 166, 177, 178, 179],
-		"alleyway_moves": []
+		"alleyway_moves": [152, 178, 179, 180, 191]
 	},
 	"168": {
 		"regular_moves": [140, 152, 153, 154, 169, 170, 180],
-		"alleyway_moves": []
+		"alleyway_moves": [154, 169, 180]
 	},
 	"169": {
 		"regular_moves": [154, 168, 170, 180, 181, 191],
-		"alleyway_moves": []
+		"alleyway_moves": [168, 180, 170, 181]
 	},
 	"170": {
 		"regular_moves": [100, 122, 123, 124, 125, 140, 141, 154, 155, 168, 169, 181, 182],
-		"alleyway_moves": []
+		"alleyway_moves": [140, 154, 141, 155, 169, 181]
 	},
 	"171": {
 		"regular_moves": [156, 157, 158, 159, 172, 183, 185],
-		"alleyway_moves": []
+		"alleyway_moves": [157, 183]
 	},
 	"172": {
 		"regular_moves": [157, 158, 159, 171, 173, 183, 185, 187, 195],
-		"alleyway_moves": []
+		"alleyway_moves": [159, 185]
 	},
 	"173": {
 		"regular_moves": [129, 144, 145, 159, 160, 172, 185, 187, 195],
-		"alleyway_moves": []
+		"alleyway_moves": [159]
 	},
 	"174": {
 		"regular_moves": [136, 138, 139, 149, 163, 164, 175, 188],
-		"alleyway_moves": []
+		"alleyway_moves": [164]
 	},
 	"175": {
 		"regular_moves": [164, 174, 176, 188, 190],
-		"alleyway_moves": []
+		"alleyway_moves": [139, 150, 164, 176, 188]
 	},
 	"176": {
 		"regular_moves": [150, 151, 166, 175, 188, 190],
-		"alleyway_moves": []
+		"alleyway_moves": [139, 150, 164, 175, 166, 165, 189, 190]
 	},
 	"177": {
 		"regular_moves": [152, 165, 166, 167, 178, 189],
-		"alleyway_moves": []
+		"alleyway_moves": [165, 188]
 	},
 	"178": {
 		"regular_moves": [152, 165, 166, 167, 177, 179, 189, 190, 191],
-		"alleyway_moves": []
+		"alleyway_moves": [167, 177, 179, 189]
 	},
 	"179": {
 		"regular_moves": [167, 178, 189, 190, 191],
-		"alleyway_moves": []
+		"alleyway_moves": [178, 152, 167, 180, 191]
 	},
 	"180": {
 		"regular_moves": [140, 152, 153, 154, 168, 169, 181, 191],
-		"alleyway_moves": []
+		"alleyway_moves": [152, 167, 179, 191, 168, 169]
 	},
 	"181": {
 		"regular_moves": [155, 169, 170, 180, 182, 191],
-		"alleyway_moves": []
+		"alleyway_moves": [169, 170]
 	},
 	"182": {
 		"regular_moves": [155, 170, 181, 183, 192],
-		"alleyway_moves": []
+		"alleyway_moves": [125, 155, 156, 183]
 	},
 	"183": {
 		"regular_moves": [156, 157, 158, 159, 171, 172, 182, 184, 185, 186, 192, 193],
-		"alleyway_moves": []
+		"alleyway_moves": [125, 155, 156, 182, 171, 185]
 	},
 	"184": {
 		"regular_moves": [183, 185, 186, 192, 193, 194],
-		"alleyway_moves": []
+		"alleyway_moves": [192, 193]
 	},
 	"185": {
 		"regular_moves": [157, 158, 159, 171, 172, 173, 183, 184, 186, 187, 193, 195],
-		"alleyway_moves": []
+		"alleyway_moves": [183, 172, 186, 187]
 	},
 	"186": {
 		"regular_moves": [183, 184, 185, 187, 193, 194, 195],
-		"alleyway_moves": []
+		"alleyway_moves": [185, 187, 193]
 	},
 	"187": {
 		"regular_moves": [159, 172, 173, 185, 186, 193, 194, 195],
-		"alleyway_moves": []
+		"alleyway_moves": [185, 186, 195]
 	},
 	"188": {
 		"regular_moves": [164, 174, 175, 176, 190],
-		"alleyway_moves": []
+		"alleyway_moves": [175]
 	},
 	"189": {
 		"regular_moves": [165, 177, 178, 179, 190, 191],
-		"alleyway_moves": []
+		"alleyway_moves": [178, 166, 165, 176, 190]
 	},
 	"190": {
 		"regular_moves": [175, 176, 178, 179, 188, 189, 191],
-		"alleyway_moves": []
+		"alleyway_moves": [166, 165, 176, 189]
 	},
 	"191": {
 		"regular_moves": [169, 178, 179, 180, 181, 189, 190],
-		"alleyway_moves": []
+		"alleyway_moves": [152, 167, 179, 180]
 	},
 	"192": {
 		"regular_moves": [182, 183, 184, 193, 194],
-		"alleyway_moves": []
+		"alleyway_moves": [184]
 	},
 	"193": {
 		"regular_moves": [183, 184, 185, 186, 187, 192, 194, 195],
-		"alleyway_moves": []
+		"alleyway_moves": [184, 186, 194]
 	},
 	"194": {
 		"regular_moves": [184, 186, 187, 192, 193, 195],
-		"alleyway_moves": []
+		"alleyway_moves": [193]
 	},
 	"195": {
 		"regular_moves": [159, 172, 173, 185, 186, 187, 193, 194],
-		"alleyway_moves": []
+		"alleyway_moves": [187]
 	}
 }
