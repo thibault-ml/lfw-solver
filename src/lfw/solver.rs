@@ -3,7 +3,9 @@ use lfw::Graph;
 use lfw::Night;
 use lfw::night::Location::*;
 use lfw::night::MoveType;
+use std::collections::HashSet;
 use std::collections::VecDeque;
+use std::iter::FromIterator;
 
 
 #[derive(Debug)]
@@ -15,35 +17,84 @@ struct LocationState {
 
 #[derive(Debug)]
 pub struct Solver {
-    graph: Graph
+    graph: Graph,
+    shortest_distances: Vec<Vec<u32>>,
 }
 
 impl Solver {
-    pub fn new(graph: Graph) -> Solver {
+    pub fn from_graph(graph: Graph) -> Solver {
+        let shortest_distances = Solver::precompute_shortest_distances(&graph);
         Solver {
-            graph: graph
+            graph: graph,
+            shortest_distances: shortest_distances
         }
     }
 
-    pub fn precompute_shortest_distances(&self) -> Vec<Vec<u32>> {
-        return vec![];
+    // This method uses the Floyd–Warshall algorithm to precompute the shortest path between
+    // all locations (graph nodes/vertices).
+    #[allow(unknown_lints)]
+    #[allow(needless_range_loop)]
+    pub fn precompute_shortest_distances(graph: &Graph) -> Vec<Vec<u32>> {
+        // Create a bidemensional table, 1000 value.
+        let graph_size = 195;
+        let mut dist: Vec<Vec<u32>> = vec![vec![1000; graph_size]; graph_size];
+
+        // Initialises the graph
+        // Set distance (v,v) = 0 on all locations (v [vertices])
+        // Set distance (u,v) = (v,u) = 1 on all locations (u) and their connections (v)
+        for location in 0..graph_size {
+            dist[location][location] = 0;
+
+            if let Some(all_cnx) = graph.all_connections_for_location(&(location as u32 + 1)) {
+                for cnx in all_cnx {
+                    let connection = *cnx as usize - 1;
+                    dist[location][connection] = 1;
+                    dist[connection][location] = 1;
+                }
+            }
+        }
+
+        // Iterate over intermediate locations
+        for k in 0..graph_size {
+            // Iterate over starting locations
+            for i in 0..graph_size {
+                // Iterate over end locations
+                for j in 0..graph_size {
+                    // If distance i->k + k->j is smaller that currently known i->j,
+                    // then keep that distance as the minimum
+                    let dist_ikj = dist[i][k] + dist[k][j];
+                    if dist[i][j] > dist_ikj {
+                        dist[i][j] = dist_ikj;
+                        dist[j][i] = dist_ikj;
+                    }
+                }
+            }
+        }
+
+        dist
+    }
+
+    fn distance_between_locations(&self, location: &u32, destination: &u32) -> u32 {
+        self.shortest_distances[*location as usize - 1][*destination as usize - 1]
     }
 
     /**
-     * Possible optimisations:
-     * - Return if the number of moves left is less than the number of known locations we have yet to visit
-     * When solving multiple nights:
-     * - If we have a pre-calculated dijkstra distance, for night 2 onwards, we have a list of
-     *   potential hideouts, exit early if there's no way to get to any of those in the number
-     *   of moves left
+     * TODO: Solve multiple nights. Now that we have a pre-calculated distance between each
+     * location, we can further optimise searched by adding potential hideouts to the list of
+     * locations we're require to have visited.
      */
     pub fn solve_night(&self, night: Night) -> Option<Vec<Vec<u32>>> {
         let mut possible_paths = Vec::<Vec<u32>>::new();
         let mut current_path = Vec::<u32>::new();
+        let mut required_locations = HashSet::from_iter(night.jack_known_locations().iter());
 
         current_path.push(*night.murder_location());
 
-        self.find_next_possible_locations(&night, &mut possible_paths, &mut current_path, &1);
+        self.find_next_possible_locations(&night,
+                                          &mut possible_paths,
+                                          &mut current_path,
+                                          &mut required_locations,
+                                          &1);
 
         if possible_paths.is_empty() {
             return None;
@@ -51,26 +102,44 @@ impl Solver {
         Some(possible_paths)
     }
 
+    /// Recursively finds Jack's next possible locations
+    ///
+    /// @param night The night to solve locations for
+    /// @param possible_paths The list of paths we've determined were possible
+    /// @param current_path The current patht to append onto
+    /// @param required_locations The list of locations that still need to be visited
+    /// @param current_turn The current turn/move being looked at
     fn find_next_possible_locations(&self,
         night: &Night,
         possible_paths: &mut Vec<Vec<u32>>,
         current_path: &mut Vec<u32>,
+        required_locations: &mut HashSet<&u32>,
         current_turn: &u32)
     {
         if current_turn > night.jack_nb_moves() {
-            // Check that the path we're testing includes all known locations for Jack
-            if night.jack_known_locations().iter().all(|known_loc| current_path.contains(known_loc)) {
+            // Check that the path we're testing includes all required locations for Jack.
+            // It being empty means there are no required locations left to be visited.
+            if required_locations.is_empty() {
                 possible_paths.push(current_path.clone());
             }
             return
         }
 
         // unwrap() because current_path shouldn't be empty, so we're happy to panic if that's the case
-        let last_pos = *(current_path.last().unwrap());
+        let current_location = *(current_path.last().unwrap());
+        let moves_left = night.jack_nb_moves() - current_turn;
+
+        // Simple but big optimisation here: if there's no way to go from the current location to
+        // any of the required locations, then drop the current path and do not continue further.
+        for required_location in required_locations.iter() {
+            if self.distance_between_locations(&current_location, required_location) > moves_left {
+                return
+            }
+        }
 
         let connections = match night.jack_move_type_for_turn(current_turn) {
-            MoveType::Alleyway => self.graph.alleyway_connections_for_location(&(last_pos)),
-            MoveType::Regular => self.graph.connections_for_location(&(last_pos)),
+            MoveType::Alleyway => self.graph.alleyway_connections_for_location(&(current_location)),
+            MoveType::Regular => self.graph.connections_for_location(&(current_location)),
         }.unwrap();
 
         for connection in connections {
@@ -80,8 +149,20 @@ impl Solver {
             };
             if should_visit {
                 current_path.push(*connection);
-                self.find_next_possible_locations(night, possible_paths, current_path, &(current_turn + 1));
+                let removed_required_location = if required_locations.contains(&current_location) {
+                    required_locations.take(&current_location)
+                } else {
+                    None
+                };
+                self.find_next_possible_locations(night,
+                                                  possible_paths,
+                                                  current_path,
+                                                  required_locations,
+                                                  &(current_turn + 1));
                 current_path.pop();
+                if let Some(known_location) = removed_required_location {
+                    required_locations.insert(known_location);
+                }
             }
         }
     }

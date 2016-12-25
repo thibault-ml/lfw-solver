@@ -4,10 +4,12 @@ use self::serde_json::Error as JsonError;
 use self::serde_json::Value as JsonValue;
 use self::serde_json::from_value as parse_json_value;
 
+use std::collections::BTreeMap;
+use std::collections::HashSet;
 use std::error;
 use std::fmt;
+use std::iter::FromIterator;
 use std::ops::Index;
-use std::collections::BTreeMap;
 
 
 pub const MIN_INDEX: usize = 1;
@@ -120,7 +122,7 @@ impl Graph {
         })
     }
 
-    pub fn connections_for_location<'a>(&'a self, location: &u32) -> Option<&'a Vec<u32>> {
+    pub fn connections_for_location(&self, location: &u32) -> Option<&Vec<u32>> {
         if *location > 0 {
             self.regular_connections.get((*location as usize) - 1)
         } else {
@@ -128,12 +130,31 @@ impl Graph {
         }
     }
 
-    pub fn alleyway_connections_for_location<'a>(&'a self, location: &u32) -> Option<&'a Vec<u32>> {
+    pub fn alleyway_connections_for_location(&self, location: &u32) -> Option<&Vec<u32>> {
         if *location > 0 {
             self.alleyway_connections.get((*location as usize) - 1)
         } else {
             None
         }
+    }
+
+    pub fn all_connections_for_location(&self, location: &u32) -> Option<Vec<&u32>> {
+        if let loc @ 1 ... 195 = *location {
+            let mut all_cnx_set = HashSet::new();
+            if let Some(regular_cnx) = self.regular_connections.get(loc as usize - 1) {
+                for cnx in regular_cnx {
+                    all_cnx_set.insert(cnx);
+                }
+            }
+            if let Some(alleyway_cnx) = self.alleyway_connections.get(loc as usize - 1) {
+                for cnx in alleyway_cnx {
+                    all_cnx_set.insert(cnx);
+                }
+            }
+            let all_cnx = Vec::from_iter(all_cnx_set.into_iter());
+            return Some(all_cnx);
+        }
+        None
     }
 }
 

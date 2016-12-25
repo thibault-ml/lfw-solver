@@ -6,6 +6,8 @@ extern crate getopts;
 use lfw_solver::*;
 use getopts::Options;
 use std::{env, process};
+use std::collections::HashSet;
+use std::iter::FromIterator;
 use std::io::BufReader;
 use std::fs::File;
 use std::path::Path;
@@ -92,13 +94,24 @@ fn main() {
     };
     // println!("{:?}", night);
 
-    let solver = lfw::Solver::new(graph);
+    let solver = lfw::Solver::from_graph(graph);
 
     match solver.solve_night(night) {
         Some(solutions) => {
-            println!("Jack potentially used the following paths:");
+            // println!("Jack potentially used the following paths:");
+            // for solution in &solutions {
+            //     println!("{:?}", solution);
+            // }
+            let zero = 0;
+            let mut hideout_set = HashSet::new();
             for solution in &solutions {
-                println!("{:?}", solution);
+                hideout_set.insert(solution.last().unwrap_or(&zero));
+            }
+            let mut hideouts = Vec::from_iter(hideout_set.into_iter());
+            hideouts.sort();
+            println!("Potential hideouts:");
+            for hideout in &hideouts {
+                println!("{:?}", hideout);
             }
         }
         None => {
