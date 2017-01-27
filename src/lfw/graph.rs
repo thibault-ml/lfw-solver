@@ -123,16 +123,16 @@ impl Graph {
     }
 
     pub fn connections_for_location(&self, location: &u32) -> Option<&Vec<u32>> {
-        if *location > 0 {
-            self.regular_connections.get((*location as usize) - 1)
+        if let loc @ 1 ... 195 = *location {
+            self.regular_connections.get((loc as usize) - 1)
         } else {
             None
         }
     }
 
     pub fn alleyway_connections_for_location(&self, location: &u32) -> Option<&Vec<u32>> {
-        if *location > 0 {
-            self.alleyway_connections.get((*location as usize) - 1)
+        if let loc @ 1 ... 195 = *location {
+            self.alleyway_connections.get((loc as usize) - 1)
         } else {
             None
         }
